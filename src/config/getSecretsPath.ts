@@ -5,7 +5,7 @@ export function getSecretsPath(fileName: string): string {
   const isProduction = process.env.NODE_ENV === 'production';
   
   // Dynamically determine base path depending on development or production environment
-  const basePath = __dirname.includes('/dist/') 
+  const basePath = isProduction
     ? path.resolve('./src/config','./.keys') // development
     : '/etc/secrets'     // production
 

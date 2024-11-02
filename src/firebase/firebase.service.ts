@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Firestore } from 'firebase-admin/firestore';
 
+
 @Injectable()
 export class FirebaseService {
   private db: Firestore;
@@ -22,6 +23,7 @@ export class FirebaseService {
       const snapshot = await myMoviesCollection.get();
       const movies = snapshot.docs.map(doc => ({
         id: doc.id,
+        createdAt: doc.createTime.toDate(),
         ...doc.data()
       }));
       return movies;

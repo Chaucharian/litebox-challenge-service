@@ -16,6 +16,20 @@ export class FirebaseService {
     });
   }
 
+  async getMovies(): Promise<any[]> {
+    try {
+      const myMoviesCollection = this.db.collection('movies');
+      const snapshot = await myMoviesCollection.get();
+      const movies = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      return movies;
+    } catch (error) {
+      throw new Error(`Failed to retrieve movies from Firebase: ${error.message}`);
+    }
+  }
+
   async addMovie(data: { title: string; imageUrl: string }) {
     const movieCollection = this.db.collection('movies');
     const newDoc = await movieCollection.add(data);

@@ -15,20 +15,20 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
-  // @Get('featured')
-  // async getFeaturedMovie() {
-  //   return this.moviesService.getFeaturedMovie();
-  // }
+  @Get('featured')
+  async getFeaturedMovie() {
+    return this.moviesService.getFeaturedMovie();
+  }
 
-  // @Get('popular')
-  // async getPopularMovies() {
-  //   return this.moviesService.getPopularMovies();
-  // }
+  @Get('popular')
+  async getPopularMovies() {
+    return this.moviesService.getPopularMovies();
+  }
 
-  // @Get('my')
-  // getMyMovies() {
-  //   return this.moviesService.getMyMovies();
-  // }
+  @Get('my')
+  async getMyMovies() {
+    return this.moviesService.getMyMovies();
+  }
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('imageUrl'))

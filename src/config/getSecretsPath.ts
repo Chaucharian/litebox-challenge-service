@@ -6,8 +6,8 @@ export function getSecretsPath(fileName: string): string {
   
   // Dynamically determine base path depending on development or production environment
   const basePath = isProduction
-    ? path.resolve('./src/config','./.keys') // development
-    : '/etc/secrets'     // production
+    ? '/etc/secrets'     // production
+    : path.resolve('./src/config','./.keys') // development
 
   const fullPath = path.join(basePath, fileName);
   
